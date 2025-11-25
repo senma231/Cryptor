@@ -1,0 +1,71 @@
+{
+  "system": {
+    "name": "VNPY量化交易系统",
+    "version": "1.0.0",
+    "author": "Your Name",
+    "timezone": "Asia/Shanghai"
+  },
+
+  "exchanges": {
+    "binance": {
+      "name": "币安",
+      "enabled": true,
+      "testnet": false,
+      "rate_limit": 1200,
+      "timeout": 30
+    },
+    "okx": {
+      "name": "OKX",
+      "enabled": false,
+      "testnet": false,
+      "rate_limit": 1000,
+      "timeout": 30
+    }
+  },
+
+  "data": {
+    "database_type": "sqlite",
+    "auto_backup": true,
+    "backup_interval_days": 7,
+    "historical_data_path": "data/historical",
+    "cache_enabled": true
+  },
+
+  "backtest": {
+    "default_capital": 100000,
+    "commission_rate": 0.001,
+    "slippage": 0.0005,
+    "benchmark": "BTCUSDT",
+    "output_path": "backtest/reports"
+  },
+
+  "paper_trading": {
+    "enabled": false,
+    "initial_capital": 10000,
+    "realtime_data": true,
+    "save_trades": true
+  },
+
+  "live_trading": {
+    "enabled": false,
+    "require_confirmation": true,
+    "dry_run": false,
+    "stop_on_error": true
+  },
+
+  "risk_control": {
+    "max_order_amount": 1000,
+    "max_position_ratio": 0.5,
+    "daily_loss_limit": 500,
+    "max_drawdown": 0.2,
+    "position_timeout_hours": 24,
+    "enable_trailing_stop": true
+  },
+
+  "notifications": {
+    "enable_console": true,
+    "enable_file": true,
+    "enable_email": false,
+    "enable_webhook": false
+  }
+}

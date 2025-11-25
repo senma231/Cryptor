@@ -1,0 +1,45 @@
+# VNPY量化交易系统依赖清单
+
+# 核心框架
+vnpy==3.9.2
+vnpy-binance==2025.1.25    # 币安交易所接口(最新版)
+vnpy-okx==2024.4.3         # OKX交易所接口
+
+# 数据存储
+peewee==3.17.0             # 轻量级ORM(SQLite)
+pyarrow                    # Parquet文件支持
+
+# 数据分析
+pandas==2.1.4
+numpy==1.26.2
+
+# 数据可视化
+matplotlib==3.8.2
+plotly==5.18.0
+
+# GUI界面
+PyQt5==5.15.10             # GUI框架
+PyQt5-sip==12.13.0         # PyQt5依赖
+
+# 加密安全
+cryptography==41.0.7       # API密钥加密
+
+# 网络请求
+requests==2.31.0
+websocket-client==1.7.0
+
+# 配置管理
+python-dotenv==1.0.0       # 环境变量管理
+pyyaml==6.0.1              # YAML配置解析
+
+# 日志记录
+loguru==0.7.2              # 高级日志库
+
+# 工具库
+pytz==2023.3.post1         # 时区处理
+python-dateutil==2.8.2     # 日期工具
+
+# 注意:以下包需要额外配置
+# - ta-lib: 需要先安装C库 (brew install ta-lib)
+# - pymongo: MongoDB驱动,按需安装
+# - streamlit/dash: Web监控面板,按需安装

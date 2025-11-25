@@ -1,0 +1,42 @@
+{
+  "enabled_methods": ["console", "feishu"],
+  
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "sender": "your_email@gmail.com",
+    "password": "your_app_password",
+    "receivers": ["receiver@example.com"]
+  },
+  
+  "telegram": {
+    "enabled": false,
+    "bot_token": "YOUR_BOT_TOKEN",
+    "chat_id": "YOUR_CHAT_ID"
+  },
+  
+  "wecom": {
+    "enabled": false,
+    "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY"
+  },
+  
+  "dingtalk": {
+    "enabled": false,
+    "webhook_url": "https://oapi.dingtalk.com/robot/send?access_token=YOUR_TOKEN"
+  },
+
+  "feishu": {
+    "enabled": true,
+    "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/77bb7116-52cd-43c3-b6b0-9954ee3009db"
+  },
+
+  "notification_settings": {
+    "daily_report_enabled": true,
+    "daily_report_interval_hours": 24,
+    "final_report_enabled": true,
+    "trade_notification_enabled": false,
+    "error_notification_enabled": true
+  }
+}
+

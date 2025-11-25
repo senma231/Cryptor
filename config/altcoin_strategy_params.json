@@ -1,0 +1,232 @@
+{
+  "description": "山寨币策略参数配置（DOGE、SHIB、SUI等）",
+  "version": "1.0.0",
+  "last_updated": "2025-11-22",
+  
+  "default_params": {
+    "comment": "默认参数（主流币）",
+    "take_profit_rate": 0.10,
+    "stop_loss_rate": 0.05,
+    "trailing_stop_rate": 0.03,
+    "slippage_rate": 0.0005,
+    "fee_rate_spot": 0.001,
+    "fee_rate_futures": 0.0004
+  },
+  
+  "coin_specific_params": {
+    "DOGEUSDT": {
+      "type": "边界币种（主流但高波动）",
+      "market": "spot",
+      "risk_level": "medium-high",
+      "params": {
+        "take_profit_rate": 0.15,
+        "stop_loss_rate": 0.08,
+        "trailing_stop_rate": 0.05,
+        "slippage_rate": 0.001,
+        "max_position_ratio": 0.40,
+        "recommended_capital": 30
+      },
+      "notes": "DOGE虽是主流币但波动大，使用加大的止盈止损空间"
+    },
+    
+    "DOGEUSDT_FUTURES": {
+      "type": "边界币种合约",
+      "market": "futures",
+      "risk_level": "high",
+      "params": {
+        "take_profit_rate": 0.10,
+        "stop_loss_rate": 0.05,
+        "trailing_stop_rate": 0.03,
+        "slippage_rate": 0.0015,
+        "max_leverage": 2,
+        "max_position_ratio": 0.25,
+        "recommended_capital": 20
+      },
+      "notes": "合约波动放大，使用更严格的止损和更小仓位"
+    },
+    
+    "SHIBUSDT": {
+      "type": "山寨币",
+      "market": "spot",
+      "risk_level": "very-high",
+      "params": {
+        "take_profit_rate": 0.25,
+        "stop_loss_rate": 0.10,
+        "trailing_stop_rate": 0.06,
+        "slippage_rate": 0.0015,
+        "max_position_ratio": 0.20,
+        "recommended_capital": 10
+      },
+      "notes": "典型山寨币，波动极大，小仓位交易"
+    },
+    
+    "SHIBUSDT_FUTURES": {
+      "type": "山寨币合约",
+      "market": "futures",
+      "risk_level": "extreme",
+      "params": {
+        "take_profit_rate": 0.15,
+        "stop_loss_rate": 0.08,
+        "trailing_stop_rate": 0.05,
+        "slippage_rate": 0.002,
+        "max_leverage": 2,
+        "max_position_ratio": 0.10,
+        "recommended_capital": 5
+      },
+      "notes": "极高风险，不建议新手交易"
+    },
+    
+    "SUIUSDT": {
+      "type": "新兴山寨币",
+      "market": "spot",
+      "risk_level": "very-high",
+      "params": {
+        "take_profit_rate": 0.30,
+        "stop_loss_rate": 0.10,
+        "trailing_stop_rate": 0.08,
+        "slippage_rate": 0.002,
+        "max_position_ratio": 0.15,
+        "recommended_capital": 8
+      },
+      "notes": "新币种，历史数据少，风险极高"
+    },
+    
+    "SUIUSDT_FUTURES": {
+      "type": "新兴山寨币合约",
+      "market": "futures",
+      "risk_level": "extreme",
+      "params": {
+        "take_profit_rate": 0.20,
+        "stop_loss_rate": 0.08,
+        "trailing_stop_rate": 0.06,
+        "slippage_rate": 0.0025,
+        "max_leverage": 2,
+        "max_position_ratio": 0.10,
+        "recommended_capital": 5
+      },
+      "notes": "极高风险，强烈不建议新手交易"
+    }
+  },
+  
+  "risk_profiles": {
+    "conservative": {
+      "name": "保守型（新手推荐）",
+      "description": "适合新手和小资金",
+      "adjustments": {
+        "take_profit_multiplier": 0.8,
+        "stop_loss_multiplier": 1.2,
+        "position_size_multiplier": 0.5
+      },
+      "max_daily_trades": 2,
+      "max_total_position": 0.5
+    },
+    
+    "balanced": {
+      "name": "平衡型（推荐）",
+      "description": "平衡收益和风险",
+      "adjustments": {
+        "take_profit_multiplier": 1.0,
+        "stop_loss_multiplier": 1.0,
+        "position_size_multiplier": 0.75
+      },
+      "max_daily_trades": 3,
+      "max_total_position": 0.7
+    },
+    
+    "aggressive": {
+      "name": "激进型（高风险）",
+      "description": "追求高收益，承受高风险",
+      "adjustments": {
+        "take_profit_multiplier": 1.2,
+        "stop_loss_multiplier": 0.8,
+        "position_size_multiplier": 1.0
+      },
+      "max_daily_trades": 5,
+      "max_total_position": 0.9
+    }
+  },
+  
+  "capital_allocation": {
+    "40_usdt": {
+      "description": "40 USDT小资金配置方案",
+      "conservative": {
+        "DOGEUSDT": 30,
+        "reserve": 10,
+        "notes": "只交易DOGE现货，保留备用金"
+      },
+      "balanced": {
+        "DOGEUSDT": 20,
+        "SHIBUSDT": 10,
+        "reserve": 10,
+        "notes": "DOGE为主，SHIB为辅"
+      },
+      "aggressive": {
+        "DOGEUSDT": 15,
+        "SHIBUSDT": 10,
+        "DOGEUSDT_FUTURES": 10,
+        "reserve": 5,
+        "notes": "现货+合约组合，高风险"
+      }
+    },
+    
+    "100_usdt": {
+      "description": "100 USDT中等资金配置方案",
+      "conservative": {
+        "DOGEUSDT": 50,
+        "SHIBUSDT": 20,
+        "reserve": 30
+      },
+      "balanced": {
+        "DOGEUSDT": 40,
+        "SHIBUSDT": 25,
+        "SUIUSDT": 15,
+        "reserve": 20
+      },
+      "aggressive": {
+        "DOGEUSDT": 30,
+        "SHIBUSDT": 20,
+        "SUIUSDT": 15,
+        "DOGEUSDT_FUTURES": 20,
+        "reserve": 15
+      }
+    }
+  },
+  
+  "trading_rules": {
+    "small_capital": {
+      "description": "小资金交易规则（<100 USDT）",
+      "rules": [
+        "单次亏损不超过总资金的10%",
+        "保留至少20%备用金",
+        "每天交易不超过3次",
+        "不使用超过2x杠杆",
+        "盈利15%及时止盈",
+        "连续亏损2次停止交易",
+        "不在高位追涨",
+        "不在低位杀跌"
+      ]
+    },
+    
+    "position_sizing": {
+      "description": "仓位管理规则",
+      "rules": [
+        "主流币（DOGE）：最多40%仓位",
+        "山寨币（SHIB/SUI）：最多20%仓位",
+        "合约：最多25%仓位",
+        "单个币种不超过总资金的40%",
+        "所有山寨币总和不超过50%"
+      ]
+    }
+  },
+  
+  "recommended_intervals": {
+    "small_capital": {
+      "description": "小资金推荐K线周期",
+      "primary": "15m",
+      "alternative": ["5m", "30m"],
+      "not_recommended": ["1d", "4h"],
+      "reason": "小资金需要快速反应，长周期机会少"
+    }
+  }
+}
+

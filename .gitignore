@@ -1,0 +1,202 @@
+# ========================================
+# 严格控制上传内容
+# 只上传打包所需的核心文件
+# ========================================
+
+# Python 缓存和编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+
+# PyInstaller 打包文件
+build/
+dist/
+*.spec
+
+# 虚拟环境
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+vnpy_env/
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+logs/
+*.log.*
+
+# 数据文件（不上传）
+data/
+*.parquet
+*.csv
+*.h5
+*.hdf5
+
+# 报告文件（不上传）
+reports/
+*.html
+*.pdf
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+.AppleDouble
+.LSOverride
+Icon
+._*
+$RECYCLE.BIN/
+
+# 打包产物（不上传）
+release/
+量化交易系统_源码_*.zip
+
+# ========================================
+# 严禁上传的敏感文件
+# ========================================
+
+# 加密策略文件（严禁上传！）
+*.qts
+*.qtb
+example_strategy.qts
+futures_strategy_crypto.qts
+futures_backtest_config.qtb
+
+# 敏感配置文件
+.env
+.env.local
+secrets.json
+api_keys.json
+*_secret.json
+*_private.json
+
+# 策略导入目录
+strategies_imported/
+
+# 用户数据
+user_data/
+*.db
+*.sqlite
+*.sqlite3
+
+# 测试文件
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+test_*.py
+*_test.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# 文档草稿
+archive/
+docs/
+*.md.bak
+
+# 所有脚本文件（本地使用，不上传）
+*.sh
+*.bat
+
+# 打包脚本（本地使用）
+pack_source_for_windows.sh
+build_windows_on_mac.sh
+build_in_docker.sh
+build_windows_standalone.bat
+package_for_delivery.sh
+package_for_windows.sh
+setup_delivery_password.py
+encrypt_strategy.py
+strategy_decrypt_tool.py
+strategy_encrypt_tool.py
+build_gui.sh
+build_gui_windows.bat
+install_gui_deps.bat
+install_gui_deps.sh
+push_to_github.sh
+setup_windows.bat
+start_gui.bat
+start_gui.sh
+start_trading.bat
+
+# 示例和期货文件（不上传）
+example_strategy.py
+futures_strategy_crypto.py
+futures_backtest_config.json
+
+# 源码压缩包（不上传）
+*.zip
+
+# 本地说明文档（不上传）
+*打包说明*.md
+*使用手册*.md
+快速*.md
+MacOS*.md
+Windows*.md
+GitHub_Actions_打包说明.md
+GitHub推送说明.md
+*.txt
+!requirements.txt
+*.md
+!README.md
+
+# ========================================
+# 明确保留的文件（必须上传）
+# ========================================
+
+# 核心 Python 文件
+!trading_gui.py
+!backtest_worker.py
+!download_worker.py
+!paper_trading_worker.py
+
+# 依赖清单
+!requirements.txt
+
+# 图标文件
+!icon.ico
+!icon.png
+
+# GitHub Actions 配置
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
+
+# 配置目录（但排除敏感文件）
+!config/
+!config/*.json
+config/*_secret.json
+config/*_private.json
+
+# 策略目录（但排除加密文件）
+!strategies/
+!strategies/**/*.py
+strategies/**/*.qts
+strategies/**/*.qtb
+
+# 工具目录
+!tools/
+!tools/**/*.py
+
+# README
+!README.md
+
