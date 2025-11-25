@@ -6,6 +6,10 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: read
+
 jobs:
   build-windows:
     name: 打包 Windows 可执行文件
