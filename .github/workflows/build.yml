@@ -57,11 +57,15 @@ jobs:
           trading_gui.py
       shell: pwsh
     
+    - name: 重命名可执行文件为英文
+      run: |
+        mv "dist/量化交易系统.exe" "dist/Cryptor-Trading-System.exe"
+
     - name: 上传 Windows 可执行文件
       uses: actions/upload-artifact@v4
       with:
-        name: 量化交易系统-Windows
-        path: dist/量化交易系统.exe
+        name: windows-executable
+        path: dist/Cryptor-Trading-System.exe
         retention-days: 30
 
   # macOS Intel 构建已被 GitHub 弃用，暂时禁用
@@ -143,13 +147,13 @@ jobs:
         EOF
 
         chmod +x "量化交易系统.app/Contents/MacOS/量化交易系统"
-        zip -r "量化交易系统-macOS-ARM.zip" "量化交易系统.app"
+        zip -r "Cryptor-Trading-System-macOS-ARM.zip" "量化交易系统.app"
 
     - name: 上传 macOS ARM 可执行文件
       uses: actions/upload-artifact@v4
       with:
-        name: 量化交易系统-macOS-ARM
-        path: 量化交易系统-macOS-ARM.zip
+        name: macos-arm-executable
+        path: Cryptor-Trading-System-macOS-ARM.zip
         retention-days: 30
 
   create-release:
@@ -169,47 +173,14 @@ jobs:
         echo "下载的 artifacts:"
         ls -R artifacts/
 
-    - name: 创建 Release 并上传文件
+    - name: 上传文件到 Release
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        # 创建 Release 说明
-        cat > release_notes.md << 'EOF'
-        # 量化交易系统 ${{ github.ref_name }} (Pre-release)
-
-        ## 🎉 预发布版本
-
-        ### ✨ 主要功能
-        - 📥 多交易所数据下载（Binance、OKX、HTX）
-        - 📊 策略回测功能
-        - 🎮 模拟交易功能
-        - 📋 策略管理功能
-        - 🔐 策略加密保护
-        - 📈 支持 13 种 K 线周期（1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d, 1w, 1M）
-
-        ### 📦 下载说明
-        1. 根据你的系统下载对应的文件：
-           - **Windows**: `量化交易系统.exe`
-           - **macOS (Apple Silicon)**: `量化交易系统-macOS-ARM.zip`
-        2. Windows: 直接运行 `.exe` 文件
-        3. macOS: 解压 `.zip` 后运行 `.app` 文件
-
-        ### ⚠️ 注意事项
-        - 这是预发布版本，可能存在未知问题
-        - 请在测试环境中使用
-        - 欢迎反馈问题和建议
-
-        ---
-
-        **⚠️ 免责声明**: 本软件仅供学习和研究使用。加密货币交易具有高风险，请谨慎使用。
-        EOF
-
-        # 创建 Release
-        gh release create ${{ github.ref_name }} \
+        # 上传文件到已存在的 Release
+        gh release upload ${{ github.ref_name }} \
           --repo ${{ github.repository }} \
-          --title "量化交易系统 ${{ github.ref_name }}" \
-          --notes-file release_notes.md \
-          --prerelease \
-          artifacts/量化交易系统-Windows/量化交易系统.exe \
-          artifacts/量化交易系统-macOS-ARM/量化交易系统-macOS-ARM.zip
+          --clobber \
+          artifacts/windows-executable/Cryptor-Trading-System.exe#量化交易系统.exe \
+          artifacts/macos-arm-executable/Cryptor-Trading-System-macOS-ARM.zip#量化交易系统-macOS-ARM.zip
 
